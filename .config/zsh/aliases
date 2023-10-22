@@ -1,1 +1,28 @@
-/home/mike/.dotfiles/config/zsh/aliases
+alias GBranch="git branch -a|fzf|xargs git checkout"
+alias hx='helix'
+
+alias ls='ls --color'
+alias tree='tree -C'
+alias vi='nvim'
+alias :q='exit'
+alias :wq='exit'
+
+alias e='$EDITOR'
+alias co='cd $HOME/coding'
+alias dl='cd $HOME/Downloads'
+
+alias open='xdg-open'
+
+alias web="chromehist"
+alias mail='aerc'
+alias vv='$EDITOR $HOME/.dotfiles/nvim/init.vim'
+alias zconfig='$EDITOR $HOME/.dotfiles/shell/zshrc && source $HOME/.zshrc'
+
+alias wifi-networks="iwctl station wlan0 get-networks"
+alias wifi-connect="iwctl station wlan0 connect"
+
+alias brscan="scanimage --device='airscan:w0:Brother MFC-L2750DW' --format=pdf --progress"
+alias batch-scan="scanimage --source ADF --device='airscan:w0:Brother MFC-L2750DW' --format=pdf --progress --batch"
+
+alias path='echo $PATH | tr : \\n'
+export alias yu6='bluetoothctl connect 7C:96:D2:38:6A:72'
