@@ -1,0 +1,47 @@
+#!/usr/bin/perl
+
+use utf8;
+use strict;
+use warnings;
+
+use IPC::Run3;
+
+my (
+    $in,
+    $out,
+    $err,
+);
+
+open my $devices, "-|", qq[ bluetoothctl devices ] or die;
+
+sub get_devices {
+    my $dev = <$devices>;
+    return undef unless $dev;
+
+    chomp $dev;
+    $dev =~ m/Device\s(.{2}:.{2}:.{2}:.{2}:.{2}:.{2})\s(.+)/;
+    return sprintf "%-18s <%s>\n", $2, $1;
+}
+
+my @cmd = qw(fuzzel --dmenu --log-level=error);
+run3 \@cmd, \&get_devices, \$out, \$err;
+
+close $devices;
+
+die $err if $err;
+die "No file entered" unless $out;
+
+$out =~ m/(.*)\s+<(.+)>/;
+my $device = $1;
+my $uuid = $2;
+
+system qq[ dunstify "Connection Attempt" "DEVICE: $device\nUUID: $uuid" ];
+open my $results, "-|", qq[ bluetoothctl connect $uuid ] or die;
+
+while (<$results>){
+    next if m/attempting/i;
+    system qq[ dunstify Results "$_" ];
+}
+
+close $results;
+exit 0;

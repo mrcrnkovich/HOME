@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+
+case $# in
+    0)
+        fzfpass.pl
+    ;;
+
+    *)
+        pass $@
+    ;;
+esac
