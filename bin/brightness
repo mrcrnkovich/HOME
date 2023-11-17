@@ -4,10 +4,8 @@
 # Arbitrary but unique message tag
 msgTag="mybrightness"
 
-# Change the volume using alsa(might differ if you use pulseaudio)
 light "$@" > /dev/null
 
-# Query amixer for the current volume and whether or not the speaker is muted
 bright="$(light)"
 
 # Show the light notification
