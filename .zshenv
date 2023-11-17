@@ -47,3 +47,5 @@ export PATH="$PATH:$HOME/.local/texlive/2023/bin/x86_64-linux"
 eval "$(goenv init -)"
 export PATH="$HOME/.plenv/bin:$PATH"
 eval "$(plenv init -)"
+
+export PATH="${HOME}/bin:$PATH"

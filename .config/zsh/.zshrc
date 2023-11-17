@@ -73,14 +73,6 @@ function prompt_git_branch {
     fi
 }
 
-function pass {
-    if [[ -z "${1}" ]]; then
-        fzfpass.sh
-    else
-        command pass "$@"
-    fi
-}
-
 #Set up prompt - Maybe move this
 prompt_git_branch
 RPROMPT=$'%F{green}${vcs_info_msg_0_}%f%F{white}[%~]%f'

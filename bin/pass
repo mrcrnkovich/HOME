@@ -2,7 +2,7 @@
 
 case $# in
     0)
-        fzfpass.pl
+        fzfpass
     ;;
 
     *)
