@@ -6,6 +6,6 @@ case $# in
     ;;
 
     *)
-        pass $@
+        /usr/bin/pass $@
     ;;
 esac
