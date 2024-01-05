@@ -89,7 +89,7 @@ bindsym XF86WLAN               exec toggle_wifi
 # bindsym XF86NotificationCenter exec --no-startup-id dunstify "Key not set"
 # bindsym XF86PickupPhone        exec --no-startup-id foot --app-id=htop bluetoothctl
 # bindsym XF86HangupPhone        exec --no-startup-id pavucontrol
-bindsym XF86Favorites          exec --no-startup-id /home/mike/.local/bin/fzfpass.pl
+bindsym XF86Favorites          exec --no-startup-id /home/mike/bin/pass
 
 bindsym Print exec grim - | wl-copy
 bindsym Alt+Print exec grim -g "$(slurp)" - | wl-copy
