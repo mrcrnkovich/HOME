@@ -55,10 +55,11 @@ vim.keymap.set('n', '<Leader>q', vim.cmd.copen)
 vim.keymap.set('n', '[q',        vim.cmd.cnext)
 vim.keymap.set('n', ']q',        vim.cmd.cprev)
 
---FZF Quick Access
-vim.keymap.set('n', '<Leader>f', vim.cmd.GFiles)
-vim.keymap.set('n', '<Leader>F', vim.cmd.Files)
-vim.keymap.set('n', '<Leader>s', vim.cmd.Rg)
+local builtin = require('telescope.builtin')
+-- Fuzzy Finders
+vim.keymap.set('n', '<Leader>f', builtin.find_files)
+vim.keymap.set('n', '<Leader>F', builtin.git_files)
+vim.keymap.set('n', '<Leader>s', builtin.live_grep)
 
 -- LuaSnips
 local ls = require('luasnip')
