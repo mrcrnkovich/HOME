@@ -9,7 +9,7 @@ light "$@" > /dev/null
 bright="$(light)"
 
 # Show the light notification
-dunstify -a "changeVolume" \
+/usr/bin/dunstify -a "changeVolume" \
              -u low \
              -i bright \
              -h string:x-dunst-stack-tag:$msgTag \
