@@ -2,29 +2,12 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.gopls.setup{ 
-    cmd = {"/home/mike/go/bin/gopls"},
+    cmd = { "~/go/bin/gopls"},
     capabilities = capabilities,
 }
 lspconfig.perlnavigator.setup{ 
-    cmd = {"node", "/home/mike/.local/share/PerlNavigator/server/out/server.js", "--stdio" },
+    cmd = {"node", "~/.local/share/PerlNavigator/server/out/server.js", "--stdio" },
     capabilities = capabilities,
-}
-lspconfig.pyright.setup{
-    capabilities = capabilities,
-}
-
-lspconfig.sqls.setup{
-  capabilities = capabilities,
-  settings = {
-    sqls = {
-      connections = {
-        {
-          driver = 'sqlite3',
-          dataSourceName = 'file:/home/mike/db-test/test.db?mode=ro',
-        },
-      },
-    },
-  },
 }
 
 -- Global mappings.

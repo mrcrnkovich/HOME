@@ -10,6 +10,8 @@ return require('packer').startup(function(use)
     -- Git
     use('tpope/vim-fugitive')
 
+    use('jamessan/vim-gnupg')
+
     -- Fuzzy Find Everything
     use {
           'nvim-telescope/telescope.nvim', tag = '0.1.5',

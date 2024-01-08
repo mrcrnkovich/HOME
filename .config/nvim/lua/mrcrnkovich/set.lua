@@ -36,7 +36,7 @@ vim.opt.showmatch  = true
 
 vim.opt.backup   = false
 vim.opt.swapfile = false
-vim.opt.undodir  = '/home/mike/.nvim/undodir'
+vim.opt.undodir  = os.getenv("HOME") .. '/.nvim/undodir'
 vim.opt.undofile = true
 
 vim.opt.completeopt = { 'noinsert', 'menuone', 'preview', }
