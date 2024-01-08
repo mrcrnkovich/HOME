@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=application
+Name=Calendar
+Path=/usr/bin/
+Exec=chromium --app="https://calendar.google.com"
