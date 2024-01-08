@@ -26,9 +26,9 @@ return {
   require("luasnip").snippet(
     { trig = "err" },
     { c(1, {
-        t("if e != nil {return e}"),
-        t("if err != nil {return err}"),
-        t("if err != nil {return nil, err}"),
+        t({"if e != nil {", "    return e", "}", ""}),
+        t({"if err != nil {", "    return err", "}", ""}),
+        t({"if err != nil {", "    return nil, err", "}", ""}),
     })}
   ),
 }
