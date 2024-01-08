@@ -1,7 +1,13 @@
+
+require('mrcrnkovich.packer')
 require('mrcrnkovich.set')
 require('mrcrnkovich.remap')
-require('mrcrnkovich.packer')
 require('mrcrnkovich.lsp')
+
+local use_completion = os.getenv("NVIM_CMP") or false
+if use_completion then
+    require('mrcrnkovich.cmp')
+end
 
 -- Load snippets from ~/.config/nvim/LuaSnip/
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/LuaSnip/"})
