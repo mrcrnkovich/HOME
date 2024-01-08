@@ -10,11 +10,13 @@ if use_completion then
 end
 
 -- Load snippets from ~/.config/nvim/LuaSnip/
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/LuaSnip/"})
 require("luasnip").config.set_config({
   enable_autosnippets = true,
   store_selection_keys = "<Tab>",
 })
+
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/LuaSnip/"})
+require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snips/"})
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
