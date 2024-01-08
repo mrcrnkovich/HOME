@@ -1,10 +1,10 @@
-
+require('mrcrnkovich.remap')
 require('mrcrnkovich.packer')
 require('mrcrnkovich.set')
 require('mrcrnkovich.remap')
 require('mrcrnkovich.lsp')
 
-local use_completion = os.getenv("NVIM_CMP") or false
+local use_completion = os.getenv("NVIM_CMP") or true
 if use_completion then
     require('mrcrnkovich.cmp')
 end
