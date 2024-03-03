@@ -44,7 +44,7 @@ bindsym $mod+Shift+p [app_id="pavucontrol"] scratchpad show
 #font pango:monospace 8
 
 output "*" scale 1
-font pango: Fira Code 14
+font pango: Fira Code 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
