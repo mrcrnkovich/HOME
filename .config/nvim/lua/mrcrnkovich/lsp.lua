@@ -2,7 +2,7 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.gopls.setup{ 
-    cmd = { "~/go/bin/gopls"},
+    cmd = { os.getenv("HOME") .. "/go/bin/gopls"},
     capabilities = capabilities,
 }
 lspconfig.perlnavigator.setup{ 

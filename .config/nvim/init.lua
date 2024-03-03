@@ -1,4 +1,3 @@
-require('mrcrnkovich.remap')
 require('mrcrnkovich.packer')
 require('mrcrnkovich.set')
 require('mrcrnkovich.remap')
