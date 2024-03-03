@@ -74,8 +74,6 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 bindsym $mod+Shift+l exec swaylock --image=/etc/sway/lockscreen.png
-bindsym $mod+Shift+s exec /home/mike/.screenlayout/main-screen.sh
-bindsym $mod+Shift+d exec /home/mike/.screenlayout/default-dual.sh
 
 # change backlight
 bindsym XF86AudioMute          exec volume toggle
