@@ -78,9 +78,9 @@ bindsym $mod+Shift+s exec /home/mike/.screenlayout/main-screen.sh
 bindsym $mod+Shift+d exec /home/mike/.screenlayout/default-dual.sh
 
 # change backlight
-bindsym XF86AudioMute          exec /bin/bash /home/mike/.local/bin/changeVolume toggle
-bindsym XF86AudioLowerVolume   exec /bin/bash /home/mike/.local/bin/changeVolume 1db-
-bindsym XF86AudioRaiseVolume   exec /bin/bash /home/mike/.local/bin/changeVolume 1db+
+bindsym XF86AudioMute          exec volume toggle
+bindsym XF86AudioLowerVolume   exec volume 1db-
+bindsym XF86AudioRaiseVolume   exec volume 1db+
 bindsym XF86AudioMicMute       exec /home/mike/.local/bin/notescript.py --new-window
 bindsym XF86MonBrightnessDown  exec /bin/bash /home/mike/.local/bin/changeBrightness -T 0.9
 bindsym XF86MonBrightnessUp    exec /bin/bash /home/mike/.local/bin/changeBrightness -T 1.1
