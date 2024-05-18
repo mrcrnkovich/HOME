@@ -40,6 +40,7 @@ export PATH="$PATH:$GOPATH/bin"
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 export PATH="$GOENV_ROOT/shims:$PATH"
+export GOBIN="$HOME/go/bin"
 
 
 export PATH="$PATH:$HOME/.local/texlive/2023/bin/x86_64-linux"
