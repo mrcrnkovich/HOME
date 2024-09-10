@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # changeBrightness
 
 # Arbitrary but unique message tag
@@ -9,7 +10,7 @@ light "$@" > /dev/null
 bright="$(light)"
 
 # Show the light notification
-/usr/bin/dunstify -a "changeVolume" \
+notify-send -a "changeVolume" \
              -u low \
              -i bright \
              -h string:x-dunst-stack-tag:$msgTag \
