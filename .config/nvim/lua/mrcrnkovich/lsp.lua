@@ -4,9 +4,19 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.gopls.setup{ 
     cmd = { os.getenv("HOME") .. "/go/bin/gopls"},
     capabilities = capabilities,
+    gopls = {
+        ui = {
+            completion = {
+                usePlaceholders = true,
+            },
+            codelenses = {
+                gc_details =true,
+            },
+        }
+    },
 }
 lspconfig.perlnavigator.setup{ 
-    cmd = {"node", "~/.local/share/PerlNavigator/server/out/server.js", "--stdio" },
+    cmd = {"node", os.getenv("HOME").."/.local/share/PerlNavigator/server/out/server.js", "--stdio" },
     capabilities = capabilities,
 }
 

@@ -2,7 +2,7 @@ print("Hello Mike")
 
 -- Leader ,
 -- This has to be the first think you set
-vim.g.leader = ','
+vim.g.mapleader = ','
 
 -- Expand path, confirm if necessary in neovim
 vim.opt.path:append('**')
@@ -13,8 +13,9 @@ vim.opt.relativenumber = true
 vim.opt.cursorline     = true
 vim.opt.signcolumn     = 'yes'
 vim.opt.termguicolors  = true
-vim.cmd.colorscheme('gruvbox')
 vim.opt.background     = 'dark'
+vim.g.gruvbox_material_background = 'soft'
+vim.cmd.colorscheme('gruvbox-material')
 vim.opt.scrolloff      = 4
 
 -- File Formatting

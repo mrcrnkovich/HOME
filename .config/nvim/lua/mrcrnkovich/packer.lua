@@ -18,12 +18,21 @@ return require('packer').startup(function(use)
           requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-      -- Appearance Plugins
-    use('itchyny/lightline.vim')
-    use('morhetz/gruvbox')
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
 
-    -- Go specific
-    -- use('fatih/vim-go')
+    use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
+
+      -- Appearance Plugins
+    use 'sainnhe/gruvbox-material'
+    use('shaunsingh/nord.nvim')
+    use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- LSP Support
     use('neovim/nvim-lspconfig')
