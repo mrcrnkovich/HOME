@@ -7,27 +7,56 @@ setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
 setopt CORRECT
+setopt PROMPT_SUBST
 
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_SAVE_NO_DUPS
 
-#GPG-AGENT recommendation
-GPG_TTY=$(tty)
-export GPG_TTY
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*' complete-options true
 
-# enable VI mode
-bindkey -v
-export KEYTIMEOUT=1
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '^y' accept-line
+bindkey -M menuselect '^xi' vi-insert
+
+# enable VI mode, makesure the ESC key triggers w/o delay
+bindkey -v; export KEYTIMEOUT=1
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+bindkey -M vicmd 'e' edit-command-line
 
 # Autocompletion using arrow keys ( based on history )
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+#GPG-AGENT recommendation
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Load aliases
+alias ls='ls --color'
+alias tree='tree -C'
+alias :q='exit'
+alias :wq='exit'
+alias vi='$EDITOR'
+alias e='$EDITOR'
+alias :e='$EDITOR'
+alias open='xdg-open'
+
+# computer specific aliases ( not git sync'd )
+[ -e "${ZDOTDIR}/aliases" ] && source "${ZDOTDIR}/aliases"
 
 function cursor_mode {
 
@@ -60,7 +89,6 @@ cursor_mode
 function prompt_git_branch {
     autoload -Uz vcs_info
     precmd() { vcs_info }
-    setopt PROMPT_SUBST
 
     zstyle ':vcs_info:*' enable git
     if [[ $GIT_PROMPT_CHANGES -ne 0 ]]; then
@@ -75,52 +103,9 @@ function prompt_git_branch {
 
 #Set up prompt - Maybe move this
 prompt_git_branch
-RPROMPT=$'%F{green}${vcs_info_msg_0_}%f%F{white}[%~]%f'
-PROMPT=$'%F{white}%n@%m%f %B%F{yellow}\uf120  %f%b'
+RPROMPT=$''
+PROMPT=$'%F{green}${vcs_info_msg_0_}%f%F{white}[%~]%f %B%F{white}[$(tmux list-windows 2>/dev/null | grep "active" | cut -d: -f1 )]%f %F{yellow}\uf120  %f%b'
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     exec sway
 fi
-
-# Load aliases
-[ -e "${ZDOTDIR}/aliases" ] && source "${ZDOTDIR}/aliases"
-
-#---------------------------------------------------------#
-#                      FZF FUNCTIONS                      #
-#---------------------------------------------------------#                      
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# fo [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fo() {
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
-ef() {
-    $EDITOR $(fzf)
-}
-
-# fh [FUZZY PATTERN] - Search in command history
-fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
-
-mygc(){
-    git clone git@github.com:mrcrnkovich/$1.git
-}
-
-function font-size(){
-    sed -r -i -e "s/(\ssize:) [0-9]+/\1 $1/g" ~/.alacritty.yml
-}
-
-function list_meta_packages(){
-    cat $1 \
-    | tail --lines=+7 \
-    | head --lines=-1 \
-    | sed "s/    '\(.*\)'/\1/g"
-}
-
