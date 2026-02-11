@@ -1,11 +1,27 @@
-#!/usr/bin/zsh
+#!/bin/sh
+
+ext=".gpg"
+pass_bin="/usr/bin/pass"
+pass_dir="${HOME}/.password-store"
+
+list_pass() {
+    for file in $pass_dir/**/*$ext
+    do
+        echo ${file##${pass_dir}/}
+    done
+}
+
+find_pass() {
+    result=$(list_pass | fuzzel --dmenu)
+
+    # strip the file extension before we send it to pass
+    result=${result%$ext}
+
+    $pass_bin --clip $result
+    notify-send $($pass_bin $result | grep -ie "user")
+}
 
 case $# in
-    0)
-        fzfpass
-    ;;
-
-    *)
-        /usr/bin/pass $@
-    ;;
+    0) find_pass ;;
+    *) exec $pass_bin "$@" ;;
 esac
