@@ -4,6 +4,7 @@ general {
     color_good      = '#98971a'
     color_bad       = '#d79921'
     color_degraded  = '#d79921'
+    output_format   = 'i3bar'
 }
 
 order += path_exists
@@ -14,7 +15,7 @@ order += "ethernet eth0"
 order += "battery 0"
 
 wireless wlan0 {
-        format_up = "  %essid (%quality)"
+        format_up = "  %essid [%quality ]"
         format_down = "  down"
         separator_block_width = 20
 }
@@ -27,28 +28,28 @@ ethernet eth0 {
 battery 0 {
         format = "%status %percentage (%remaining)"
         format_down = "No battery"
-        status_chr = "⚡ CHR"
-        status_bat = "🔋 "
+        status_chr = "⚡CHR"
+        status_bat = "🔋"
         status_unk = "? UNK"
-        status_full = "☻ "
+        status_full = ""
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
         integer_battery_capacity = true 
-        separator_block_width = 30
+        separator_block_width = 20
 }
 
 tztime phl {
     format = "%time"
-    format = "  %I:%M %P    %Y-%m-%d"
+    format = "  %I:%M %P   %Y-%m-%d"
     timezone = "America/New_York"
     separator_block_width = 20
 
 }
 
 volume master {
-    format = "  %volume "
-    format_muted = "    muted"
+    format = "  %volume"
+    format_muted = "  muted"
     device = "default"
     mixer = "Master"
-    separator_block_width = 30
+    separator_block_width = 20
 }
