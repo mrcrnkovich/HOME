@@ -2,4 +2,6 @@ alias wifi-networks="iwctl station wlan0 get-networks"
 alias wifi-connect="iwctl station wlan0 connect"
 alias brscan="scanimage --device='airscan:w0:Brother MFC-L2750DW' --format=pdf --progress"
 alias batch-scan="scanimage --source ADF --device='airscan:w0:Brother MFC-L2750DW' --format=pdf --progress --batch"
-export alias yu6='bluetoothctl connect 7C:96:D2:38:6A:72'
+alias yu6='bluetoothctl connect 7C:96:D2:38:6A:72'
+alias reset_gpg='gpgconf --reload scdaemon'
+alias tmux_pane_stdout='tmux capture-pane -p'
